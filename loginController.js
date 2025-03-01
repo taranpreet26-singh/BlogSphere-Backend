@@ -10,10 +10,10 @@ const loginZod = z.object({
 export async function loginController(req, res) {
     const result = loginZod.safeParse(req.body)
     console.log(req.body)
-    
+
     if (result.success) {
         const { email, password } = req.body
-        
+
         const response = await prisma.user.findFirst({
             where: {
                 email,
@@ -23,9 +23,9 @@ export async function loginController(req, res) {
                 id: true
             }
         })
-        if(!response.id){
+        if (!response.id) {
             return res.json({
-                data:{msg:"User is not registered"}
+                data: { msg: "User is not registered" }
             })
         }
         // console.log(response.id)
