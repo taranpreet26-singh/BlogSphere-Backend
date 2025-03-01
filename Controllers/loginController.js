@@ -23,7 +23,7 @@ export async function loginController(req, res) {
                 id: true
             }
         })
-        if(!response.id){
+        if(response.id === null){
             return res.json({
                 data:{msg:"You're not registered"}
             })
