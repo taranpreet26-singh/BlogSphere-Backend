@@ -23,9 +23,13 @@ export async function loginController(req, res) {
                 id: true
             }
         })
-        console.log(response.id)
-        const id = response.id
-        console.log(response)
+
+         if (!response.id) {
+            return res.json({
+                data: { msg: "User is not registered" }
+            })
+        }
+
         if (response) {
             const token = jwt.sign({ id }, process.env.SIGNATURE)
             console.log(token)
