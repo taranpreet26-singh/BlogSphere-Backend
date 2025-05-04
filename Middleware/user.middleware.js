@@ -7,6 +7,7 @@ export async function userMiddleware(req,res,next) {
     console.log(token)
     
     const response = jwt.verify(token,process.env.SIGNATURE)
+    console.log(response)
     const userExist = await prisma.user.findFirst({
         where:{
             id:response.id
