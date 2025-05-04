@@ -23,9 +23,9 @@ export async function loginController(req, res) {
                 id: true
             }
         })
-      
-        if (response) {
-            const token = jwt.sign({ id }, process.env.SIGNATURE)
+        const userId = await response.id
+        if (userId) {
+            const token = jwt.sign({ userId }, process.env.SIGNATURE)
             console.log(token)
             res.status(200).json({
                 msg: "Login Successfully",
